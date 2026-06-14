@@ -178,7 +178,7 @@ O restante do script apenas define as tabelas DH específicas extraídas do livr
         (theta4, d4,  0, 0)
     ]
 ```
-* Define a cinemática do **SCARA** (R-R-P-R). Nota importante para a defesa oral: O Spong define o eixo z_2 apontando para baixo (ao contrário da maioria dos livros). Por causa disso, a torção do elo anterior vira alpha_2 = pi e a variável da junta prismática entra invertida (`-d3`) para que o vetor posição do efetuador reflita exatamente a expressão d_3 - d_4 do livro.
+* Define a cinemática do **SCARA** (R-R-P-R). O Spong define o eixo z_2 apontando para baixo (ao contrário da maioria dos livros). Por causa disso, a torção do elo anterior vira alpha_2 = pi e a variável da junta prismática entra invertida (`-d3`) para que o vetor posição do efetuador reflita exatamente a expressão d_3 - d_4 do livro.
 
 ---
 
