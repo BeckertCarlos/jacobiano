@@ -1,6 +1,6 @@
 import sympy as sp
 
-def dh_matrix(theta, d, a, alpha):
+def matriz_dh(theta, d, a, alpha):
     """Retorna a matriz de transformação homogênea de Denavit-Hartenberg tradicional."""
     return sp.Matrix([
         [sp.cos(theta), -sp.sin(theta)*sp.cos(alpha),  sp.sin(theta)*sp.sin(alpha), a*sp.cos(theta)],
@@ -9,7 +9,7 @@ def dh_matrix(theta, d, a, alpha):
         [0,              0,                           0,                           1]
     ])
 
-def skew_symmetric(v):
+def anti_simetrica(v):
     """Retorna a matriz anti-simétrica S(v) para substituir o produto vetorial."""
     return sp.Matrix([
         [0,     -v[2],  v[1]],
@@ -30,7 +30,7 @@ def analisar_manipulador(nome, DH_tabela, tipos_juntas, q, dq, valores_numericos
     os = [sp.Matrix([0, 0, 0])]  # o0 inicial
 
     for theta, d, a, alpha in DH_tabela:
-        A = dh_matrix(theta, d, a, alpha)
+        A = matriz_dh(theta, d, a, alpha)
         T = sp.simplify(T * A)
         Ts.append(T)
         zs.append(sp.simplify(T[:3, 2]))
@@ -59,7 +59,7 @@ def analisar_manipulador(nome, DH_tabela, tipos_juntas, q, dq, valores_numericos
     Jv_skew, Jw_skew = [], []
     for i in range(len(DH_tabela)):
         if tipos_juntas[i] == 'R':
-            Jv_skew.append(skew_symmetric(zs[i]) * (o_n - os[i]))
+            Jv_skew.append(anti_simetrica(zs[i]) * (o_n - os[i]))
             Jw_skew.append(zs[i])
         else:
             Jv_skew.append(zs[i])
